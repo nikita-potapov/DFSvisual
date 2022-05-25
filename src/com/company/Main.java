@@ -1,10 +1,10 @@
 package com.company;
 
-public class Main {
+import gui.MainWindow;
 
+public class Main {
     public static void main(String[] args) {
-	// write your code here
-        System.out.println("OK");
-        System.out.println("This is DEV branch!");
+        MainWindow mainWindow = new MainWindow();
+        mainWindow.show();
     }
 }
