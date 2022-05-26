@@ -11,6 +11,7 @@ public class Node {
     public ArrayList<Node> neighbors;
     public Color color;
     public boolean checked;
+    public Stroke stroke = new BasicStroke(6);
 
     public Node() {
         this.neighbors = new ArrayList<>();
@@ -31,7 +32,7 @@ public class Node {
         } else {
             g2d.setPaint(Color.black);
         }
-        g2d.setStroke(Settings.BOLD_STROKE);
+        g2d.setStroke(stroke);
         g2d.drawOval(this.cx - this.radius / 2, this.cy - this.radius / 2 - 30, this.radius, this.radius);
         g2d.setPaint(this.color);
         g2d.fillOval(this.cx - this.radius / 2, this.cy - this.radius / 2 - 30, this.radius, this.radius);

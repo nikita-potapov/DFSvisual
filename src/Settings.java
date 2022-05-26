@@ -11,7 +11,7 @@ public class Settings {
     public static final int WINDOW_HEIGHT = 720;
 
     public static final int FONT_SIZE = 16;
-    public static final int TIMER_DELAY = 200;
+    public static final int TIMER_DELAY = 250;
 
     public static final String ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
