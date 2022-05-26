@@ -1,11 +1,9 @@
 import java.awt.*;
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
+import java.awt.event.*;
 
 
-public class Canvas extends JComponent implements ActionListener {
+public class Canvas extends JComponent implements ActionListener, KeyListener {
 
     Timer timer;
     Visualiser visualiser;
@@ -52,12 +50,9 @@ public class Canvas extends JComponent implements ActionListener {
     }
 
     public void mouseReleased(MouseEvent e) {
-
     }
 
     public void mouseEntered(MouseEvent e) {
-        //todo
-//            System.out.println("Enter(" + e.getX() + ", " + e.getY() + ")");
     }
 
     public void mouseExited(MouseEvent e) {
@@ -65,5 +60,19 @@ public class Canvas extends JComponent implements ActionListener {
     }
 
     public void mouseMoved(MouseEvent e) {
+    }
+
+    @Override
+    public void keyTyped(KeyEvent e) {
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+        this.visualiser.keyPressed(e);
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+
     }
 }

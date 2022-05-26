@@ -1,11 +1,8 @@
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.awt.event.MouseMotionListener;
+import java.awt.event.*;
 
 public class Window extends JFrame {
-
     public static void main(String[] args) {
         JFrame frame = new JFrame("DFSvisual");
         frame.setSize(
@@ -20,6 +17,9 @@ public class Window extends JFrame {
         frame.setContentPane(canvas);
         frame.setResizable(false);
         frame.addMouseListener(new MyMouseListener(canvas));
+        frame.addKeyListener(canvas);
+
+
     }
 
     public static class MyMouseListener implements MouseListener, MouseMotionListener {

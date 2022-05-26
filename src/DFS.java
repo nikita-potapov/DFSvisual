@@ -1,42 +1,37 @@
 import java.util.ArrayList;
 import java.util.Stack;
-import java.util.UUID;
 
 public class DFS {
-    ArrayList<String> dfsHistory;
-    ArrayList<DFSnode> graph;
-    ArrayList<Node> currNeighbors;
-    Node startNode, currentNode;
-    DFSnode startDFSnode;
+    Node startNode;
 
 
     public DFS() {
-        this.dfsHistory = new ArrayList<>();
-        this.graph = new ArrayList<>();
         this.startNode = null;
-
     }
 
     public void play() {
-        Stack<DFSnode> stack = new Stack<>();
-        stack.push(this.startDFSnode);
-        this.startDFSnode.dfs(stack);
+        Stack<Node> stack = new Stack<>();
+        DFS.dfs(startNode, stack);
+        //todo
+        System.out.println(stack);
+
     }
 
-    public void setGraph(ArrayList<Node> nodes) {
-        for (Node node : nodes) {
-
-            DFSnode tmp = new DFSnode(node);
-
-            for (int j = 0; j < node.neighbors.size(); j++) {
-                tmp.neighbors.add(new DFSnode(node.neighbors.get(j)));
+    public static void dfs(Node node, Stack<Node> stack) {
+        node.checked = true;
+        stack.push(node);
+        ArrayList<Node> neighbors = node.neighbors;
+        for (Node neighbor : neighbors) {
+            if (!neighbor.checked) {
+                DFS.dfs(neighbor, stack);
             }
-
-            if (startNode == node) {
-                startDFSnode = tmp;
-            }
-
-            graph.add(tmp);
         }
     }
+
+    public static void setAllNodesVisitedFalse(ArrayList<Node> nodes) {
+        for (Node node : nodes) {
+            node.checked = false;
+        }
+    }
+
 }

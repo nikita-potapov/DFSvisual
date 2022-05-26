@@ -1,5 +1,6 @@
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.Stack;
 
 public class Node {
     public int cx, cy;
@@ -9,11 +10,14 @@ public class Node {
     public boolean isHighlightedA, isHighlightedB;
     public ArrayList<Node> neighbors;
     public Color color;
+    public boolean checked;
 
     public Node() {
         this.neighbors = new ArrayList<>();
         this.color = Color.white;
+        this.checked = false;
     }
+
 
     public void draw(Graphics2D g2d) {
         if (this.isLighted) {
@@ -33,5 +37,9 @@ public class Node {
         g2d.fillOval(this.cx - this.radius / 2, this.cy - this.radius / 2 - 30, this.radius, this.radius);
         g2d.setPaint(Color.black);
         g2d.drawString((this.value != null ? this.value : ""), this.cx - 6, this.cy + 5 - 30);
+    }
+
+    public String toString() {
+        return "[" + this.value + "]";
     }
 }
