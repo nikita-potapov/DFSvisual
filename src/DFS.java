@@ -19,8 +19,6 @@ public class DFS {
     Deque<Node> play() {
         Deque<Node> stack = new LinkedList<>();
         DFS.dfs(startNode, stack);
-        //todo
-        System.out.println(stack);
         Deque<Node> reversed = new LinkedList<>();
         while (!stack.isEmpty()) {
             reversed.addLast(stack.pop());
@@ -31,10 +29,16 @@ public class DFS {
     public static void dfs(Node node, Deque<Node> stack) {
         node.checked = true;
         stack.push(node);
-        ArrayList<Node> neighbors = (ArrayList<Node>) node.neighbors.stream().sorted(((o1, o2) -> o1.value.compareTo(o2.value))).collect(Collectors.toList());
+        ArrayList<Node> neighbors = (ArrayList<Node>) node.neighbors.stream()
+                .sorted(((o1, o2) -> o1.value.compareTo(o2.value)))
+                .collect(Collectors.toList());
         for (Node neighbor : neighbors) {
             if (!neighbor.checked) {
                 DFS.dfs(neighbor, stack);
+                //todo Добавить отрисовку обратного хода
+                //todo
+                System.out.println("MAGENTA");
+                node.back = Color.MAGENTA;
                 stack.push(node);
             }
         }

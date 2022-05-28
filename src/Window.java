@@ -1,4 +1,5 @@
 import javax.swing.*;
+import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.*;
 
@@ -10,16 +11,18 @@ public class Window extends JFrame {
                 Settings.WINDOW_HEIGHT
         );
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setLayout(new BorderLayout(1, 1));
+//        frame.setLayout(new BorderLayout(1, 1));
+        frame.setLayout(new BorderLayout());
         Canvas canvas = new Canvas();
         frame.add(canvas);
+        frame.add(canvas, BorderLayout.CENTER);
+
         frame.setVisible(true);
         frame.setContentPane(canvas);
         frame.setResizable(false);
         frame.addMouseListener(new MyMouseListener(canvas));
         frame.addKeyListener(canvas);
-
-
+        frame.addMouseMotionListener(new MyMouseListener(canvas));
     }
 
     public static class MyMouseListener implements MouseListener, MouseMotionListener {
@@ -48,7 +51,6 @@ public class Window extends JFrame {
         @Override
         public void mouseEntered(MouseEvent e) {
             this.myCanvas.mouseEntered(e);
-
         }
 
         @Override
@@ -58,14 +60,12 @@ public class Window extends JFrame {
 
         @Override
         public void mouseDragged(MouseEvent e) {
-
+            this.myCanvas.mouseDragged(e);
         }
 
         @Override
         public void mouseMoved(MouseEvent e) {
             this.myCanvas.mouseMoved(e);
-            //todo
-            System.out.println("move");
         }
     }
 }
