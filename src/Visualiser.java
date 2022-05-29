@@ -17,6 +17,7 @@ public class Visualiser implements ActionListener, KeyListener {
     ArrayList<Point> points;
     int startDragX, startDragY;
     ProgramState state;
+    String historyString;
 
 
     public Visualiser() {
@@ -25,6 +26,7 @@ public class Visualiser implements ActionListener, KeyListener {
         this.dfs = new DFS();
         this.points = new ArrayList<>();
         this.state = ProgramState.EDIT;
+        this.historyString = "";
     }
 
     public void drawFrame(Graphics2D g2d) {
@@ -92,13 +94,20 @@ public class Visualiser implements ActionListener, KeyListener {
         if (e.getButton() == MouseEvent.BUTTON3 && node != null) {
             this.dfs.startNode = node;
             DFS.clearNodesBackground(this.nodes);
+            //todo
+            long start = System.nanoTime();
             this.dfsHistory = this.dfs.play();
+            long finish = System.nanoTime();
+            long duration = finish - start;
+            //todo
+            System.out.println("[" + this.nodes.size() + "] time [ms]: " + duration);
             ArrayList<Node> blocks = new ArrayList<>();
             for (int i = 0; i < this.dfsHistory.size(); i++) {
                 Node tmp = dfsHistory.poll();
                 blocks.add(tmp);
                 dfsHistory.push(tmp);
             }
+            this.historyString = dfsHistory.toString();
             this.historyBlocks = blocks;
             DFS.setAllNodesVisitedFalse(this.nodes);
             this.state = ProgramState.PLAY;
@@ -219,7 +228,7 @@ public class Visualiser implements ActionListener, KeyListener {
 
     public void drawHistory(Graphics2D g2d) {
         if (this.dfsHistory != null) {
-            g2d.drawString(this.dfsHistory.toString(), 200, Settings.WINDOW_HEIGHT - 50);
+            g2d.drawString(this.historyString, 210, Settings.WINDOW_HEIGHT - 60);
         }
     }
 
@@ -267,18 +276,8 @@ public class Visualiser implements ActionListener, KeyListener {
         int mouseX = e.getX();
         int mouseY = e.getY() - 30;
 
-//        if (this.draggedNode != null &&
-//                mouseX > 215 && mouseX < Settings.WINDOW_WIDTH - Settings.NODE_RADIUS / 2 &&
-//                mouseY < Settings.WINDOW_HEIGHT - 115 && mouseY > Settings.NODE_RADIUS / 2
-//
-//        ) {
-//            this.draggedNode.cy = mouseY;
-//            this.draggedNode.cx = mouseX;
-//        }
-
-        if (this.draggedNode != null)
-        {
-            if (mouseX > 215 && mouseX < Settings.WINDOW_WIDTH - 10 - Settings.NODE_RADIUS / 2){
+        if (this.draggedNode != null) {
+            if (mouseX > 215 && mouseX < Settings.WINDOW_WIDTH - 10 - Settings.NODE_RADIUS / 2) {
                 this.draggedNode.cx = mouseX;
             }
             if (mouseY < Settings.WINDOW_HEIGHT - 115 && mouseY > Settings.NODE_RADIUS / 2) {

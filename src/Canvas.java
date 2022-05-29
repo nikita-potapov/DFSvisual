@@ -72,10 +72,10 @@ public class Canvas extends JComponent implements ActionListener, KeyListener {
         g2d.drawString("чтобы удалить его.", 15, text2Height + 80);
 
         g2d.drawString("3. Чтобы удалить ", 2, text3Height);
-        g2d.drawString("вершину, сначала нужно", 1, text3Height + 20);
-        g2d.drawString("удалить все ее ребра,", 1, text3Height + 40);
-        g2d.drawString("затем удалить саму", 1, text3Height + 60);
-        g2d.drawString("вершину.", 1, text3Height + 80);
+        g2d.drawString("вершину, сначала", 1, text3Height + 20);
+        g2d.drawString("удалите все ее ребра,", 1, text3Height + 40);
+        g2d.drawString("затем кликните по ней и", 1, text3Height + 60);
+        g2d.drawString("нажмите клавишу Delete.", 1, text3Height + 80);
 
         g2d.drawString("4. Кликните по вершине", 2, text4Height);
         g2d.drawString("правой кнопкой мыши,", 10, text4Height + 20);

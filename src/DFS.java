@@ -32,13 +32,14 @@ public class DFS {
         ArrayList<Node> neighbors = (ArrayList<Node>) node.neighbors.stream()
                 .sorted(((o1, o2) -> o1.value.compareTo(o2.value)))
                 .collect(Collectors.toList());
+        // Подсвеченную строчку не трогать! Без нее не работает!
         for (Node neighbor : neighbors) {
             if (!neighbor.checked) {
                 DFS.dfs(neighbor, stack);
                 //todo Добавить отрисовку обратного хода
                 //todo
-                System.out.println("MAGENTA");
-                node.back = Color.MAGENTA;
+                // System.out.println("MAGENTA");
+                // node.back = Color.MAGENTA;
                 stack.push(node);
             }
         }
